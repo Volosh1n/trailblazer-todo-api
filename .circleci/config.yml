@@ -8,11 +8,19 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/ruby:2.5.1-node-browsers
+        environment:
+          PGHOST: localhost
+          PGUSER: react-todo
+          RAILS_ENV: test
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
+      - image: circleci/postgres:9.4
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: react-todo_test
 
     working_directory: ~/repo
 
