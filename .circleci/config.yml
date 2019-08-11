@@ -7,7 +7,15 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.5.1-node-browsers
+        environment:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: root
+
       - image: circleci/postgres:9.4
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: react-todo_test
 
     working_directory: ~/repo
 
