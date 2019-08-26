@@ -9,10 +9,4 @@ class AuthenticationController < ApplicationController
     time = (Time.now + 24.hours.to_i).strftime('%m-%d-%Y %H:%M')
     render json: { token: token, exp: time }, status: :ok
   end
-
-  private
-
-  def login_params
-    params.permit(:email, :password)
-  end
 end
