@@ -46,6 +46,10 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
+      - run:
+          name: Preparing database config
+          command: cp config/database.example.yml config/database.yml
+
       # Database setup
       - run: bundle exec rake db:create
       - run: bundle exec rake db:migrate
