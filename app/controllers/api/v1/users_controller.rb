@@ -1,11 +1,6 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :authorize_request, except: :create
-  before_action :find_user, except: %i[create index]
-
-  def index
-    @users = User.all
-    render json: @users, status: :ok
-  end
+  before_action :find_user, only: %i[show]
+  before_action :authorize_request, only: %i[show]
 
   def show
     render json: @user, status: :ok
@@ -18,16 +13,6 @@ class Api::V1::UsersController < ApplicationController
     else
       render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
     end
-  end
-
-  def update
-    unless @user.update(user_params)
-      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    @user.destroy
   end
 
   private
