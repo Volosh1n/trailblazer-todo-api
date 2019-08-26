@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  MIN_PASSWORD_LENGTH = 6.freeze
+  MIN_PASSWORD_LENGTH = 6
 
   has_secure_password
 
