@@ -14,7 +14,7 @@ jobs:
 
       - image: circleci/postgres:9.4
         environment:
-          POSTGRES_USER: react-todo
+          POSTGRES_USER: root
           POSTGRES_DB: react-todo_test
 
     working_directory: ~/repo
