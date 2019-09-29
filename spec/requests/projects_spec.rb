@@ -68,7 +68,7 @@ RSpec.describe Api::V1::ProjectsController, type: :request do
       let(:project) { create(:project, user: user) }
 
       before do
-        patch api_v1_project_path(id: project.id, name: new_name_for_project, user_id: user.id), headers: auth_params
+        patch api_v1_project_path(id: project.id, name: new_name_for_project), headers: auth_params
       end
 
       it 'updates user project' do
@@ -85,7 +85,7 @@ RSpec.describe Api::V1::ProjectsController, type: :request do
       let(:project) { create(:project, user: user) }
 
       before do
-        patch api_v1_project_path(id: project.id, name: invalid_project_name, user_id: user.id), headers: auth_params
+        patch api_v1_project_path(id: project.id, name: invalid_project_name), headers: auth_params
       end
 
       it 'does not update project' do
@@ -104,7 +104,7 @@ RSpec.describe Api::V1::ProjectsController, type: :request do
 
     it "destroys user's project" do
       expect do
-        delete api_v1_project_path(id: project.id, user_id: user.id), headers: auth_params
+        delete api_v1_project_path(id: project.id), headers: auth_params
       end.to change(Project, :count).by(-1)
     end
   end
