@@ -22,7 +22,6 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'json-schema'
-  gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
@@ -30,7 +29,9 @@ end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'rubocop'
+  gem 'rubocop-performance'
+  gem 'rubocop-rails'
+  gem 'rubocop-rspec'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
