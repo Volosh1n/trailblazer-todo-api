@@ -1,3 +1,14 @@
+require 'simplecov'
+
+SimpleCov.start 'rails' do
+  add_filter 'app/mailers/application_mailer.rb'
+  add_filter 'app/jobs/application_job.rb'
+  add_filter 'app/channels'
+  add_filter 'app/serializers'
+  add_filter 'app/decorators/user_decorator.rb'
+  minimum_coverage 95
+end
+
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
@@ -31,7 +42,7 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -60,4 +71,5 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Shoulda::Matchers::ActiveModel, type: :model
   config.include Shoulda::Matchers::ActiveRecord, type: :model
+  config.include ResponseHelper
 end

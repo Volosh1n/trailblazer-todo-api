@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe AuthenticationController, type: :request do
   describe 'POST #login' do
     context 'when existing user' do
