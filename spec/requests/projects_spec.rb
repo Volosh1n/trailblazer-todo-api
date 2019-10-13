@@ -3,7 +3,7 @@ RSpec.describe Api::V1::ProjectsController, type: :request do
   let(:token) { JsonWebToken.encode(user_id: user.id) }
   let(:auth_params) { { 'Authorization' => token } }
   let(:new_name_for_project) { 'some new name' }
-  let(:invalid_project_name) { 'a' * (Project::NAME_MINIMUM_LENGTH - 1) }
+  let(:invalid_project_name) { 'a' * (Project::NAME_MIN_LENGTH - 1) }
   let(:project_valid_params) { attributes_for(:project, user_id: user.id) }
   let(:project_invalid_params) { attributes_for(:project, name: invalid_project_name, user_id: user.id) }
 
