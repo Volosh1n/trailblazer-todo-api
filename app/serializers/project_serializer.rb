@@ -4,4 +4,5 @@ class ProjectSerializer
   attributes :name
 
   belongs_to :user
+  has_many :tasks
 end
