@@ -1,6 +1,5 @@
 class Api::V1::ProjectsController < ApplicationController
   before_action :authorize_request
-  before_action :set_project, only: %i[destroy]
 
   def index
     render json: ProjectSerializer.new(Project.all).serialized_json, status: :ok
@@ -46,13 +45,5 @@ class Api::V1::ProjectsController < ApplicationController
         render json: { errors: result['contract.default'].errors.full_messages }, status: :unprocessable_entity
       }
     }
-  end
-
-  def set_project
-    @project = @current_user.projects.find_by(id: params[:id])
-  end
-
-  def project_params
-    params.permit(:name, :user_id)
   end
 end
