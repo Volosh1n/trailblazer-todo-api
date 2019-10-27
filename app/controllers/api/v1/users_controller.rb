@@ -2,25 +2,30 @@ class Api::V1::UsersController < ApplicationController
   before_action :authorize_request, only: %i[show]
 
   def show
-    if User.find_by(id: params[:id]) == @current_user
-      render json: UserSerializer.new(@current_user).serialized_json, status: :ok
-    else
-      render json: { errors: 'User not found' }, status: :not_found
-    end
+    endpoint operation: Users::Operation::Show, options: {
+      params: params, current_user: @current_user
+    }, different_handler: show_handler
   end
 
   def create
-    user = User.new(user_params)
-    if user.save
-      render json: UserSerializer.new(user).serialized_json, status: :created
-    else
-      render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
-    end
+    endpoint operation: Users::Operation::Create, options: { params: params }, different_handler: create_handler
   end
 
   private
 
-  def user_params
-    params.permit(:email, :password, :password_confirmation)
+  def show_handler
+    {
+      success: ->(_) { render json: UserSerializer.new(@current_user).serialized_json, status: :ok },
+      invalid: ->(_) { render json: { errors: 'User not found' }, status: :not_found }
+    }
+  end
+
+  def create_handler
+    {
+      success: ->(result) { render json: UserSerializer.new(result['model']).serialized_json, status: :created },
+      invalid: lambda { |result|
+        render json: { errors: result['contract.default'].errors.full_messages }, status: :unprocessable_entity
+      }
+    }
   end
 end

@@ -13,6 +13,10 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rack-cors'
 gem 'rails', '~> 5.2.3'
+gem 'reform'
+gem 'reform-rails'
+gem 'simple_endpoint'
+gem 'trailblazer-rails', '~> 2.1'
 
 group :development, :test do
   gem 'pry-rails'
