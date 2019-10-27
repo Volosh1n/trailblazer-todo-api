@@ -1,41 +1,52 @@
 class Api::V1::ProjectsController < ApplicationController
   before_action :authorize_request
-  before_action :set_project, only: %i[show update destroy]
+  before_action :set_project, only: %i[destroy]
 
   def index
     render json: ProjectSerializer.new(Project.all).serialized_json, status: :ok
   end
 
   def show
-    render json: ProjectSerializer.new(@project).serialized_json, status: :ok
+    endpoint operation: Projects::Operation::Show, options: {
+      params: params, current_user: @current_user
+    }, different_handler: show_handler
   end
 
   def create
-    project = @current_user.projects.new(project_params)
-    if project.save
-      render json: ProjectSerializer.new(project).serialized_json, status: :created
-    else
-      render json: { errors: project.errors.full_messages }, status: :unprocessable_entity
-    end
+    endpoint operation: Projects::Operation::Create, options: {
+      params: params, current_user: @current_user
+    }
   end
 
   def update
-    if @project.update(project_params)
-      render json: ProjectSerializer.new(@project).serialized_json, status: :ok
-    else
-      render json: { errors: @project.errors.full_messages }, status: :unprocessable_entity
-    end
+    endpoint operation: Projects::Operation::Update, options: {
+      params: params, current_user: @current_user
+    }
   end
 
   def destroy
-    if @project.destroy
-      render json: ProjectSerializer.new(@current_user.projects).serialized_json, status: :ok
-    else
-      render json: { errors: @project.errors.full_messages }, status: :unprocessable_entity
-    end
+    endpoint operation: Projects::Operation::Destroy, options: {
+      params: params, current_user: @current_user
+    }
   end
 
   private
+
+  def show_handler
+    {
+      success: ->(result) { render json: ProjectSerializer.new(result['model']).serialized_json, status: :ok },
+      invalid: ->(_) { render json: { errors: 'Project not found' }, status: :not_found }
+    }
+  end
+
+  def default_handler
+    {
+      success: ->(result) { render json: ProjectSerializer.new(result['model']).serialized_json, status: :ok },
+      invalid: lambda { |result|
+        render json: { errors: result['contract.default'].errors.full_messages }, status: :unprocessable_entity
+      }
+    }
+  end
 
   def set_project
     @project = @current_user.projects.find_by(id: params[:id])
