@@ -23,3 +23,4 @@ Style/Documentation:
 Style/ClassAndModuleChildren:
   Exclude:
     - 'app/controllers/**/**/*'
+    - 'app/concepts/**/*'
