@@ -6,7 +6,7 @@ class Projects::Operation::Destroy < Trailblazer::Operation
     ctx[:model] = current_user.projects.find_by(id: params[:id])
   end
 
-  def destroy_model(ctx, model:, **)
-    ctx[:model].destroy
+  def destroy_model(_ctx, model:, **)
+    model.destroy
   end
 end
