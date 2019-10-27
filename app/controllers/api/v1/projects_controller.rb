@@ -2,7 +2,7 @@ class Api::V1::ProjectsController < ApplicationController
   before_action :authorize_request
 
   def index
-    render json: ProjectSerializer.new(Project.all).serialized_json, status: :ok
+    render json: ProjectSerializer.new(@current_user.projects.all).serialized_json, status: :ok
   end
 
   def show

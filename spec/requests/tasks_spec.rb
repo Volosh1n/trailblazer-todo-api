@@ -3,7 +3,7 @@ RSpec.describe Api::V1::TasksController, type: :request do
   let(:token) { JsonWebToken.encode(user_id: user.id) }
   let(:auth_params) { { 'Authorization' => token } }
   let(:new_description_for_task) { 'some new description' }
-  let(:invalid_task_description) { 'a' * (Task::DESCRIPTION_MIN_LENGTH - 1) }
+  let(:invalid_task_description) { 'a' * (Constants::TASK_DESCRIPTION_MIN_LENGTH - 1) }
   let(:project) { create(:project, user: user) }
   let(:task_valid_params) { attributes_for(:task, project_id: project.id) }
   let(:task_invalid_params) { attributes_for(:task, description: invalid_task_description, project_id: project.id) }
@@ -51,7 +51,7 @@ RSpec.describe Api::V1::TasksController, type: :request do
 
       it do
         post api_v1_project_tasks_path(task_valid_params), headers: auth_params
-        expect(response).to have_http_status(:created)
+        expect(response).to have_http_status(:ok)
       end
     end
 
