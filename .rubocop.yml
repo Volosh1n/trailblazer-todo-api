@@ -7,13 +7,9 @@ Rails:
   Enabled: true
 AllCops:
   Exclude:
-    - 'node_modules/**/*'
-    - 'db/**/*'
-    - 'spec/*'
-    - 'spec/**/*'
-    - 'config/**/*'
-    - 'script/**/*'
     - 'bin/*'
+    - 'db/**/*'
+    - 'spec/support/*'
 Style/FrozenStringLiteralComment:
   Enabled: false
 Metrics/LineLength:
@@ -24,3 +20,13 @@ Style/ClassAndModuleChildren:
   Exclude:
     - 'app/controllers/**/**/*'
     - 'app/concepts/**/*'
+RSpec/NestedGroups:
+  Max: 4
+RSpec/FilePath:
+  Exclude:
+    - 'spec/requests/*'
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+RSpec/MultipleExpectations:
+  Max: 2
