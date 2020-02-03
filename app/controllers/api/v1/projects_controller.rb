@@ -23,20 +23,16 @@ class Api::V1::ProjectsController < ApplicationController
 
   private
 
-  def default_options
-    { params: params, current_user: @current_user }
-  end
-
   def show_handler
     {
-      success: ->(result) { render json: ProjectSerializer.new(result['model']).serialized_json, status: :ok },
+      success: ->(result) { render json: result['serialized_project'], status: :ok },
       invalid: ->(_) { render json: { errors: 'Project not found' }, status: :not_found }
     }
   end
 
   def default_handler
     {
-      success: ->(result) { render json: ProjectSerializer.new(result['model']).serialized_json, status: :ok },
+      success: ->(result) { render json: result['serialized_project'], status: :ok },
       invalid: lambda { |result|
         render json: { errors: result['contract.default'].errors.full_messages }, status: :unprocessable_entity
       }

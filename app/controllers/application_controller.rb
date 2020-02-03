@@ -27,4 +27,8 @@ class ApplicationController < ActionController::API
       invalid: ->(result) { render json: { errors: e.message }, status: :unauthorized }
     }
   end
+
+  def default_options
+    { params: params, current_user: @current_user }
+  end
 end
