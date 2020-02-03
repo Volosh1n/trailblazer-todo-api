@@ -6,52 +6,19 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def show
-    endpoint operation: Tasks::Operation::Show, options: {
-      params: params, current_user: @current_user
-    }, different_handler: show_handler
+    endpoint operation: Tasks::Operation::Show, options: default_options, different_handler: show_handler
   end
 
-  # def create
-  #   task = @current_user.tasks.new(task_params)
-  #   if task.save
-  #     render json: TaskSerializer.new(task).serialized_json, status: :created
-  #   else
-  #     render json: { errors: task.errors.full_messages }, status: :unprocessable_entity
-  #   end
-  # end
-
-  # def update
-  #   if @task.update(task_params)
-  #     render json: TaskSerializer.new(@task).serialized_json, status: :ok
-  #   else
-  #     render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
-  #   end
-  # end
-
-  # def destroy
-  #   if @task.destroy
-  #     render json: TaskSerializer.new(@current_user.tasks).serialized_json, status: :ok
-  #   else
-  #     render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
-  #   end
-  # end
-
   def create
-    endpoint operation: Tasks::Operation::Create, options: {
-      params: params, current_user: @current_user
-    }
+    endpoint operation: Tasks::Operation::Create, options: default_options
   end
 
   def update
-    endpoint operation: Tasks::Operation::Update, options: {
-      params: params, current_user: @current_user
-    }
+    endpoint operation: Tasks::Operation::Update, options: default_options
   end
 
   def destroy
-    endpoint operation: Tasks::Operation::Destroy, options: {
-      params: params, current_user: @current_user
-    }
+    endpoint operation: Tasks::Operation::Destroy, options: default_options
   end
 
   private

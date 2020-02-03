@@ -15,14 +15,14 @@ class Api::V1::UsersController < ApplicationController
 
   def show_handler
     {
-      success: ->(_) { render json: UserSerializer.new(@current_user).serialized_json, status: :ok },
+      success: ->(_) { render json: result['serialized_user'], status: :ok },
       invalid: ->(_) { render json: { errors: 'User not found' }, status: :not_found }
     }
   end
 
   def create_handler
     {
-      success: ->(result) { render json: UserSerializer.new(result['model']).serialized_json, status: :created },
+      success: ->(result) { render json: result['serialized_user'], status: :created },
       invalid: lambda { |result|
         render json: { errors: result['contract.default'].errors.full_messages }, status: :unprocessable_entity
       }

@@ -4,11 +4,7 @@ class ApplicationController < ActionController::API
   private
 
   def authorize_request
-    header = request.headers['Authorization']
-    decoded = JsonWebToken.decode(header)
-    @current_user = User.find(decoded[:user_id])
-  rescue ActiveRecord::RecordNotFound, JWT::DecodeError => e
-    render json: { errors: e.message }, status: :unauthorized
+    endpoint operation: Auth::Operation::AuthorizeRequest, options: { request: request }, different_handler: auth_handler
   end
 
   def default_cases
@@ -22,6 +18,13 @@ class ApplicationController < ActionController::API
     {
       success: ->(result) { render json: result['model'], **result['render_options'], status: :ok },
       invalid: ->(result) { render json: result['contract.default'].errors, status: :unprocessable_entity }
+    }
+  end
+
+  def auth_handler
+    {
+      success: ->(result) { @current_user = result['user'] },
+      invalid: ->(result) { render json: { errors: e.message }, status: :unauthorized }
     }
   end
 end

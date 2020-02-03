@@ -2,34 +2,30 @@ class Api::V1::ProjectsController < ApplicationController
   before_action :authorize_request
 
   def index
-    render json: ProjectSerializer.new(@current_user.projects.all).serialized_json, status: :ok
+    render json: ProjectSerializer.new(@current_user.projects).serialized_json, status: :ok
   end
 
   def show
-    endpoint operation: Projects::Operation::Show, options: {
-      params: params, current_user: @current_user
-    }, different_handler: show_handler
+    endpoint operation: Projects::Operation::Show, options: default_options, different_handler: show_handler
   end
 
   def create
-    endpoint operation: Projects::Operation::Create, options: {
-      params: params, current_user: @current_user
-    }
+    endpoint operation: Projects::Operation::Create, options: default_options
   end
 
   def update
-    endpoint operation: Projects::Operation::Update, options: {
-      params: params, current_user: @current_user
-    }
+    endpoint operation: Projects::Operation::Update, options: default_options
   end
 
   def destroy
-    endpoint operation: Projects::Operation::Destroy, options: {
-      params: params, current_user: @current_user
-    }
+    endpoint operation: Projects::Operation::Destroy, options: default_options
   end
 
   private
+
+  def default_options
+    { params: params, current_user: @current_user }
+  end
 
   def show_handler
     {
