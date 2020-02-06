@@ -15,7 +15,7 @@ class Api::V1::UsersController < ApplicationController
 
   def show_handler
     {
-      success: ->(_) { render json: result['serialized_user'], status: :ok },
+      success: ->(result) { render json: result['serialized_user'], status: :ok },
       invalid: ->(_) { render json: { errors: 'User not found' }, status: :not_found }
     }
   end

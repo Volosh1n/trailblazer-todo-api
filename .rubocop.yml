@@ -5,28 +5,45 @@ require:
 
 Rails:
   Enabled: true
+
 AllCops:
   Exclude:
     - 'bin/*'
     - 'db/**/*'
     - 'spec/support/*'
+
 Style/FrozenStringLiteralComment:
   Enabled: false
+
 Metrics/LineLength:
   Max: 120
+
 Style/Documentation:
   Enabled: false
+
 Style/ClassAndModuleChildren:
   Exclude:
     - 'app/controllers/**/**/*'
     - 'app/concepts/**/*'
+
 RSpec/NestedGroups:
   Max: 4
+
 RSpec/FilePath:
   Exclude:
     - 'spec/requests/*'
+
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+
 RSpec/MultipleExpectations:
   Max: 2
+
+Style/SignalException:
+  Exclude:
+    - 'app/concepts/**/*'
+
+Lint/UnreachableCode:
+  Exclude:
+    - 'app/concepts/**/*'

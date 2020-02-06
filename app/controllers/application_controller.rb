@@ -4,7 +4,8 @@ class ApplicationController < ActionController::API
   private
 
   def authorize_request
-    endpoint operation: Auth::Operation::AuthorizeRequest, options: { request: request }, different_handler: auth_handler
+    endpoint operation: Auth::Operation::AuthorizeRequest,
+             options: { request: request }, different_handler: auth_handler
   end
 
   def default_cases
@@ -24,7 +25,7 @@ class ApplicationController < ActionController::API
   def auth_handler
     {
       success: ->(result) { @current_user = result['user'] },
-      invalid: ->(result) { render json: { errors: e.message }, status: :unauthorized }
+      invalid: ->(result) { render json: { errors: result['errors'] }, status: :unauthorized }
     }
   end
 
