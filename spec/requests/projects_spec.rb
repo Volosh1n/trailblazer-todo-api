@@ -11,7 +11,7 @@ RSpec.describe Api::V1::ProjectsController, type: :request do
     let(:projects_count) { 3 }
 
     it 'responds with success status' do
-      get api_v1_user_projects_path(user_id: user.id), headers: auth_params
+      get api_v1_projects_path(user_id: user.id), headers: auth_params
       expect(response.status).to eq(200)
     end
 
@@ -19,7 +19,7 @@ RSpec.describe Api::V1::ProjectsController, type: :request do
       projects_count.times do
         create(:project, user: user)
       end
-      get api_v1_user_projects_path(user_id: user.id), headers: auth_params
+      get api_v1_projects_path(user_id: user.id), headers: auth_params
       expect(response_json['data'].size).to eq(projects_count)
     end
   end
@@ -44,12 +44,12 @@ RSpec.describe Api::V1::ProjectsController, type: :request do
     context 'with valid params' do
       it 'creates new user project' do
         expect do
-          post api_v1_user_projects_path(project_valid_params), headers: auth_params
+          post api_v1_projects_path(project_valid_params), headers: auth_params
         end.to change(Project, :count).by(1)
       end
 
       it do
-        post api_v1_user_projects_path(project_valid_params), headers: auth_params
+        post api_v1_projects_path(project_valid_params), headers: auth_params
         expect(response).to have_http_status(:ok)
       end
     end
@@ -57,7 +57,7 @@ RSpec.describe Api::V1::ProjectsController, type: :request do
     context 'with invalid params' do
       it 'does not create project' do
         expect do
-          post api_v1_user_projects_path(project_invalid_params), headers: auth_params
+          post api_v1_projects_path(project_invalid_params), headers: auth_params
         end.not_to change(Project, :count)
       end
     end
