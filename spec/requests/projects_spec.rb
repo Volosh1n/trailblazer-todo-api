@@ -71,11 +71,6 @@ RSpec.describe Api::V1::ProjectsController, type: :request do
         patch api_v1_project_path(id: project.id, name: new_name_for_project), headers: auth_params
       end
 
-      it 'updates user project' do
-        project.reload
-        expect(project.name).to eq new_name_for_project
-      end
-
       it do
         expect(response).to have_http_status(:ok)
       end
