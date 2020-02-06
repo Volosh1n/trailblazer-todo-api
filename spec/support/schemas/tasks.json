@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "required": ["data"],
+  "properties": {
+    "data" : {
+      "type" : "array",
+      "items": {
+        "type" : "object",
+        "required" : ["id", "type", "attributes", "relationships"],
+        "properties": {
+          "attributes" : {
+            "type" : "object",
+            "required" : ["description"]
+          },
+          "relationships" : {
+            "properties": {
+              "projects": {
+                "type" : "object",
+                "required" : ["data"],
+                "properties": {
+                  "data" : {
+                    "type" : "object",
+                    "required" : ["id", "type"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

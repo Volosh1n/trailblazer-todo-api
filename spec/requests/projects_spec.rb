@@ -20,6 +20,7 @@ RSpec.describe Api::V1::ProjectsController, type: :request do
         create(:project, user: user)
       end
       get api_v1_projects_path(user_id: user.id), headers: auth_params
+      expect(response).to match_response_schema('projects')
       expect(response_json['data'].size).to eq(projects_count)
     end
   end
@@ -36,6 +37,7 @@ RSpec.describe Api::V1::ProjectsController, type: :request do
     end
 
     it 'renders actual project' do
+      expect(response).to match_response_schema('project')
       expect(response_json['data']['attributes']['name']).to eq(project.name)
     end
   end

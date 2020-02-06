@@ -21,6 +21,7 @@ RSpec.describe Api::V1::TasksController, type: :request do
         create(:task, project: project)
       end
       get api_v1_project_tasks_path(project_id: project.id), headers: auth_params
+      expect(response).to match_response_schema('tasks')
       expect(response_json['data'].size).to eq(tasks_count)
     end
   end
@@ -37,6 +38,7 @@ RSpec.describe Api::V1::TasksController, type: :request do
     end
 
     it 'renders actual task' do
+      expect(response).to match_response_schema('task')
       expect(response_json['data']['attributes']['description']).to eq(task.description)
     end
   end

@@ -286,7 +286,6 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   trailblazer-rails (~> 2.1)
-  tzinfo-data
 
 RUBY VERSION
    ruby 2.6.0p0

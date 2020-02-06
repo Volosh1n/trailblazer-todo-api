@@ -8,6 +8,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'carrierwave'
 gem 'fast_jsonapi'
 gem 'ffaker'
+gem 'json-schema'
 gem 'jwt'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma'
@@ -39,5 +40,3 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
-
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
