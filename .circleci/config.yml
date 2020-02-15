@@ -12,9 +12,10 @@ jobs:
           PGHOST: localhost
           PGUSER: root
 
-      - image: circleci/postgres:11-ram
+      - image: circleci/postgres:9.4
         environment:
           POSTGRES_USER: root
+          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: react-todo_test
 
     working_directory: ~/repo
