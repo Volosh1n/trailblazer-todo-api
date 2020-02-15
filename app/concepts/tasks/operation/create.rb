@@ -6,6 +6,7 @@ class Tasks::Operation::Create < Trailblazer::Operation
   step :serialize_task
 
   def build_model(ctx, current_user:, **)
+    # binding.pry
     ctx[:model] = current_user.tasks.new
   end
 

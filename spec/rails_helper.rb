@@ -35,3 +35,5 @@ RSpec.configure do |config|
   config.include Shoulda::Matchers::ActiveRecord, type: :model
   config.include ResponseHelper
 end
+
+RSpec::Expectations.configuration.on_potential_false_positives = :nothing

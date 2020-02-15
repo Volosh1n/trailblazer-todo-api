@@ -22,6 +22,6 @@ class Auth::Operation::AuthorizeRequest < Trailblazer::Operation
   end
 
   def find_user(ctx, decoded:, **)
-    ctx[:user] = User.find(decoded[:user_id])
+    ctx[:user] = User.find_by(id: decoded[:user_id])
   end
 end
