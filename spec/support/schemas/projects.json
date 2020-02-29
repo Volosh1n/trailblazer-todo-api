@@ -1,0 +1,42 @@
+{
+  "type": "object",
+  "required": ["data"],
+  "properties": {
+    "data" : {
+      "type" : "array",
+      "items": {
+        "type" : "object",
+        "required" : ["id", "type", "attributes", "relationships"],
+        "properties": {
+          "attributes" : {
+            "type" : "object",
+            "required" : ["name"]
+          },
+          "relationships" : {
+            "properties": {
+              "user": {
+                "type" : "object",
+                "required" : ["data"],
+                "properties": {
+                  "data" : {
+                    "type" : "object",
+                    "required" : ["id", "type"]
+                  }
+                }
+              },
+              "tasks": {
+                "type" : "object",
+                "required" : ["data"],
+                "properties": {
+                  "data" : {
+                    "required" : ["id", "type"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
