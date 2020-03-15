@@ -1,22 +1,22 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.0'
+ruby '2.6.3'
 
 gem 'bcrypt'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'carrierwave'
 gem 'fast_jsonapi'
-gem 'ffaker'
+gem 'ffaker', '~> 2.14.0'
 gem 'jwt'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma'
 gem 'rack-cors'
 gem 'rails', '~> 5.2.3'
-gem 'reform'
-gem 'reform-rails'
+gem 'reform', '2.2.4'
+gem 'reform-rails', '0.1.7'
 gem 'simple_endpoint'
-gem 'trailblazer-rails', '~> 2.1'
+gem 'trailblazer-rails', '2.1.7'
 
 group :development, :test do
   gem 'pry-rails'
