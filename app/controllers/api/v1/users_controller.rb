@@ -15,15 +15,15 @@ class Api::V1::UsersController < ApplicationController
 
   def show_handler
     {
-      success: ->(result) { render json: result['serialized_user'], status: :ok },
-      invalid: ->(_) { render json: { errors: 'User not found' }, status: :not_found }
+      success: ->(result, **) { render json: result['serialized_user'], status: :ok },
+      invalid: ->(_, **) { render json: { errors: 'User not found' }, status: :not_found }
     }
   end
 
   def create_handler
     {
-      success: ->(result) { render json: result['serialized_user'], status: :created },
-      invalid: lambda { |result|
+      success: ->(result, **) { render json: result['serialized_user'], status: :created },
+      invalid: lambda { |result, **|
         render json: { errors: result['contract.default'].errors.full_messages }, status: :unprocessable_entity
       }
     }

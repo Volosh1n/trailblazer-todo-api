@@ -7,8 +7,8 @@ class AuthenticationController < ApplicationController
 
   def login_handler
     {
-      success: ->(result) { render json: { token: result['token'], exp: result['time'] }, status: :ok },
-      invalid: ->(_) { render json: { error: 'unauthorized' }, status: :unauthorized }
+      success: ->(result, **) { render json: { token: result['token'], exp: result['time'] }, status: :ok },
+      invalid: ->(_, **) { render json: { error: 'unauthorized' }, status: :unauthorized }
     }
   end
 end

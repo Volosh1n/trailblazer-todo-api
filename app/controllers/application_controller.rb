@@ -10,22 +10,22 @@ class ApplicationController < ActionController::API
 
   def default_cases
     {
-      success: ->(result) { result.success? },
-      invalid: ->(result) { result.failure? }
+      success: ->(result, **) { result.success? },
+      invalid: ->(result, **) { result.failure? }
     }
   end
 
   def default_handler
     {
-      success: ->(result) { render json: result['model'], **result['render_options'], status: :ok },
-      invalid: ->(result) { render json: result['contract.default'].errors, status: :unprocessable_entity }
+      success: ->(result, **) { render json: result['model'], **result['render_options'], status: :ok },
+      invalid: ->(result, **) { render json: result['contract.default'].errors, status: :unprocessable_entity }
     }
   end
 
   def auth_handler
     {
-      success: ->(result) { @current_user = result['user'] },
-      invalid: ->(result) { render json: { errors: result['errors'] }, status: :unauthorized }
+      success: ->(result, **) { @current_user = result['user'] },
+      invalid: ->(result, **) { render json: { errors: result['errors'] }, status: :unauthorized }
     }
   end
 
