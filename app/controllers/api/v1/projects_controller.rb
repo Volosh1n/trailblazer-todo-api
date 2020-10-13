@@ -25,15 +25,15 @@ class Api::V1::ProjectsController < ApplicationController
 
   def show_handler
     {
-      success: ->(result) { render json: result['serialized_project'], status: :ok },
-      invalid: ->(_) { render json: { errors: 'Project not found' }, status: :not_found }
+      success: ->(result, **) { render json: result['serialized_project'], status: :ok },
+      invalid: ->(_, **) { render json: { errors: 'Project not found' }, status: :not_found }
     }
   end
 
   def default_handler
     {
-      success: ->(result) { render json: result['serialized_project'], status: :ok },
-      invalid: lambda { |result|
+      success: ->(result, **) { render json: result['serialized_project'], status: :ok },
+      invalid: lambda { |result, **|
         render json: { errors: result['contract.default'].errors.full_messages }, status: :unprocessable_entity
       }
     }

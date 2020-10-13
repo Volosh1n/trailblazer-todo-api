@@ -25,15 +25,15 @@ class Api::V1::TasksController < ApplicationController
 
   def show_handler
     {
-      success: ->(result) { render json: result['serialized_task'], status: :ok },
-      invalid: ->(_) { render json: { errors: 'Task not found' }, status: :not_found }
+      success: ->(result, **) { render json: result['serialized_task'], status: :ok },
+      invalid: ->(_, **) { render json: { errors: 'Task not found' }, status: :not_found }
     }
   end
 
   def default_handler
     {
-      success: ->(result) { render json: result['serialized_task'], status: :ok },
-      invalid: lambda { |result|
+      success: ->(result, **) { render json: result['serialized_task'], status: :ok },
+      invalid: lambda { |result, **|
         render json: { errors: result['contract.default'].errors.full_messages }, status: :unprocessable_entity
       }
     }
