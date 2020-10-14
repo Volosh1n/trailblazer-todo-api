@@ -70,12 +70,12 @@ GEM
     coderay (1.1.2)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
-    declarative (0.0.10)
+    declarative (0.0.20)
     declarative-builder (0.1.0)
       declarative-option (< 0.2.0)
     declarative-option (0.1.0)
     diff-lcs (1.4.4)
-    disposable (0.4.5)
+    disposable (0.4.7)
       declarative (>= 0.0.9, < 1.0.0)
       declarative-builder (< 0.2.0)
       declarative-option (< 0.2.0)
@@ -173,9 +173,10 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    reform (2.2.4)
-      disposable (>= 0.4.1)
+    reform (2.3.3)
+      disposable (>= 0.4.2, < 0.5.0)
       representable (>= 2.4.0, < 3.1.0)
+      uber (< 0.2.0)
     reform-rails (0.1.7)
       activemodel (>= 3.2)
       reform (>= 2.2.0)
@@ -291,7 +292,7 @@ DEPENDENCIES
   puma
   rack-cors
   rails (~> 6.0.3)
-  reform (= 2.2.4)
+  reform (= 2.3.3)
   reform-rails (= 0.1.7)
   rspec-rails
   rubocop-performance
