@@ -20,7 +20,7 @@ RSpec.describe Api::V1::UsersController, type: :request do
       end
     end
 
-    context 'when authorized request' do
+    context 'when not authorized request' do
       let(:token) { nil }
 
       it 'responds with unauthorized status' do
