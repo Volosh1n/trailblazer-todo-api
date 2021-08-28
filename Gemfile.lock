@@ -95,7 +95,7 @@ GEM
       railties (>= 5.0.0)
     fast_jsonapi (1.5)
       activesupport (>= 4.2)
-    ffaker (2.14.0)
+    ffaker (2.19.0)
     ffi (1.15.0)
     globalid (0.5.2)
       activesupport (>= 5.0)
@@ -293,7 +293,7 @@ DEPENDENCIES
   carrierwave
   factory_bot_rails
   fast_jsonapi
-  ffaker (~> 2.14.0)
+  ffaker (~> 2.19.0)
   json-schema
   jwt
   listen (>= 3.0.5, < 3.6)
