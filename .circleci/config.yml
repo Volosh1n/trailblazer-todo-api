@@ -1,7 +1,4 @@
-# Ruby CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-ruby/ for more details
-#
+
 version: 2
 jobs:
   build:
@@ -23,7 +20,6 @@ jobs:
     steps:
       - checkout
 
-      # Download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
@@ -32,15 +28,11 @@ jobs:
 
       - run:
           name: Configure Bundler
-          command: |
-            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
-            source $BASH_ENV
-            gem install bundler:2.0.2
+          command: gem install bundler:2.1.4
 
       - run:
           name: install dependencies
-          command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+          command: bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - save_cache:
           paths:
@@ -49,12 +41,12 @@ jobs:
 
       - run:
           name: Preparing database config
-          command: cp config/database.example.yml config/database.yml
+          command: |
+            cp config/database.example.yml config/database.yml && bundle exec rake db:create db:migrate
 
-      # Database setup
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:migrate
-      - run: bundle exec rake db:schema:load
+      - run:
+          name: Run Rubocop
+          command: bundle exec rubocop -P
 
       # run tests!
       - run:
