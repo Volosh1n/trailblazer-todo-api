@@ -7,16 +7,20 @@ Rails:
   Enabled: true
 
 AllCops:
+  TargetRubyVersion: 2.7
+  TargetRailsVersion: 6.0
+  NewCops: enable
   Exclude:
     - 'bin/*'
     - 'db/**/*'
     - 'spec/support/*'
+    - 'vendor/**/*'
+
+Layout/LineLength:
+  Max: 120
 
 Style/FrozenStringLiteralComment:
   Enabled: false
-
-Metrics/LineLength:
-  Max: 120
 
 Style/Documentation:
   Enabled: false
@@ -26,6 +30,10 @@ Style/ClassAndModuleChildren:
     - 'app/controllers/**/**/*'
     - 'app/concepts/**/*'
 
+Style/SignalException:
+  Exclude:
+    - 'app/concepts/**/*'
+
 RSpec/NestedGroups:
   Max: 4
 
@@ -33,20 +41,22 @@ RSpec/FilePath:
   Exclude:
     - 'spec/requests/*'
 
+RSpec/MultipleExpectations:
+  Max: 4
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+Rails/FilePath:
+  EnforcedStyle: arguments
+
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
 
-RSpec/MultipleExpectations:
-  Max: 4
-
-Style/SignalException:
-  Exclude:
-    - 'app/concepts/**/*'
-
 Lint/UnreachableCode:
   Exclude:
     - 'app/concepts/**/*'
-
-RSpec/ExampleLength:
-  Enabled: false
