@@ -7,7 +7,7 @@ gem 'bcrypt'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'carrierwave'
 gem 'fast_jsonapi'
-gem 'ffaker', '~> 2.14.0'
+gem 'ffaker', '~> 2.19.0'
 gem 'jwt'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma'
