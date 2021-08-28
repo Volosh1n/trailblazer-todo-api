@@ -13,7 +13,7 @@ jobs:
         environment:
           POSTGRES_USER: root
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: react-todo_test
+          POSTGRES_DB: todo-trb_test
 
     working_directory: ~/repo
 

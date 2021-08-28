@@ -9,14 +9,14 @@ default: &default
 
 development:
   <<: *default
-  database: react-todo_development
+  database: todo-trb_development
 
 test:
   <<: *default
-  database: react-todo_test
+  database: todo-trb_test
 
 production:
   <<: *default
-  database: react-todo_production
-  username: react-todo
-  password: <%= ENV['REACT-TODO_DATABASE_PASSWORD'] %>
+  database: todo-trb_production
+  username: todo-trb
+  password: <%= ENV['TODO-TRB_DATABASE_PASSWORD'] %>
