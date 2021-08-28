@@ -314,7 +314,7 @@ DEPENDENCIES
   trailblazer-rails (= 2.1.7)
 
 RUBY VERSION
-   ruby 2.6.3p62
+   ruby 2.7.4p191
 
 BUNDLED WITH
    2.1.4
