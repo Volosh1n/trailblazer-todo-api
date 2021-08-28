@@ -105,7 +105,7 @@ GEM
     json (2.3.1)
     json-schema (2.8.1)
       addressable (>= 2.4)
-    jwt (2.2.1)
+    jwt (2.2.3)
     listen (3.5.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
