@@ -16,7 +16,7 @@ gem 'rails', '~> 6.1.4'
 gem 'reform', '2.2.4'
 gem 'reform-rails', '0.1.7'
 gem 'simple_endpoint'
-gem 'trailblazer-rails', '2.1.7'
+gem 'trailblazer-rails', '2.3.0'
 
 group :development, :test do
   gem 'pry-rails'
