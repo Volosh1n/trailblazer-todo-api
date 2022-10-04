@@ -12,11 +12,11 @@ gem 'jwt'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma'
 gem 'rack-cors'
-gem 'rails', '~> 7.0.2'
+gem 'rails', '~> 7.0.4'
 gem 'reform', '2.6.0'
 gem 'reform-rails', '0.2.3'
 gem 'simple_endpoint'
-gem 'trailblazer-rails', '2.4.0'
+gem 'trailblazer-rails', '2.4.3'
 
 group :development, :test do
   gem 'pry-rails'
